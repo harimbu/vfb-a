@@ -1,32 +1,70 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-navigation-drawer app v-model="drawer" width="400">
+      <Menu :site="site" />
+    </v-navigation-drawer>
+
+    <v-app-bar app color="primary" dark>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <Header :title="site.title" />
+      <v-spacer></v-spacer>
+      <Sign />
+    </v-app-bar>
+
+    <v-main>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+
+    <Footer :footer="site.footer" />
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import site from '@/assets/site'
+import Header from '@/components/site/header'
+import Footer from '@/components/site/footer'
+import Menu from '@/components/site/menu'
+import Sign from '@/components/site/sign'
 
-#nav {
-  padding: 30px;
+export default {
+  name: 'App',
+  components: { Header, Footer, Menu, Sign },
+  data() {
+    return {
+      drawer: null,
+      site: site
+    }
+  },
+  created() {
+    this.subscribe()
+  },
+  methods: {
+    subscribe() {
+      this.$firebase
+        .database()
+        .ref()
+        .child('site')
+        .on(
+          'value',
+          snap => {
+            const v = snap.val()
+            if (!v) {
+              this.$firebase
+                .database()
+                .ref()
+                .child('site')
+                .set(this.site)
+            } else {
+              this.site = v
+            }
+          },
+          e => {
+            console.log(e.message)
+          }
+        )
+    }
+  }
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>

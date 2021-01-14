@@ -5,11 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    fireUser: null
   },
   mutations: {
+    setFireUser(state, fu) {
+      state.fireUser = fu
+    }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })

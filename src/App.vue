@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app v-model="drawer" width="400">
+    <v-navigation-drawer app v-model="drawer">
       <Menu :site="site" />
     </v-navigation-drawer>
 
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import site from '@/assets/site'
+import site from '@/data/site'
 import Header from '@/components/site/header'
 import Footer from '@/components/site/footer'
 import Menu from '@/components/site/menu'

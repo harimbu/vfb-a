@@ -18,7 +18,7 @@
           <v-btn icon @click="openDialog(i)"><v-icon>mdi-pencil</v-icon></v-btn>
         </template>
 
-        <v-list-item v-for="(subItem, j) in item.subItems" :key="j" :to="item.to">
+        <v-list-item v-for="(subItem, j) in item.subItems" :key="j" :to="subItem.to">
           <v-list-item-content>
             <v-list-item-title v-text="subItem.title"></v-list-item-title>
           </v-list-item-content>

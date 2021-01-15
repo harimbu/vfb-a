@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import List from '@/components/bbs/list'
+import Vuetify from '@/components/ui/vuetify'
 
 Vue.use(VueRouter)
 
@@ -9,6 +11,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/crud/basic',
+    name: 'List',
+    component: List
+  },
+  {
+    path: '/ui/vuetify',
+    name: 'Vuetify',
+    component: Vuetify
   },
   {
     path: '/about',

@@ -3,7 +3,6 @@ export default {
   footer: 'vuetify',
   menus: [
     {
-      active: true,
       title: '메인',
       icon: 'mdi-view-dashboard',
       subItems: [
@@ -21,11 +20,12 @@ export default {
       ]
     },
     {
+      active: true,
       title: 'CRUD',
       icon: 'mdi-chat',
       subItems: [
         { title: 'Basic CRUD', to: '/crud/basic' },
-        { title: 'Firebase CRUD', to: '/js/firebase' }
+        { title: 'Vuetify', to: '/ui/vuetify' }
       ]
     }
   ]
